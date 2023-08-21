@@ -1,5 +1,67 @@
 #include "main.h"
 
+int _putch(char ch)
+{
+    (write(1, &ch, 1));
+    return 1;
+}
+
+int print_str(char *string)
+{
+    int v = 0;
+
+    if (!string)
+    {
+        print_str("(null)");
+        return;
+    }
+    else
+    {
+        while (*string)
+        {
+            _putch(*string);
+            string++;
+            v++;
+        }
+    }
+    return (v);
+}
+int long_nbr(int nbr)
+{
+    if (nbr == 0)
+        return 0;
+    int n = 1 + long_nbr(nbr / 10);
+    return (n);
+}
+int print_nombre(int n)
+{
+    int v = 0;
+    if (n == -2147483648)
+    {
+        _putch('-');
+        _putch('2');
+        _putch('1');
+        _putch('4');
+        n = 7483648;
+    }
+    while (n < 0)
+    {
+        n = - n;
+        _putch('-');
+    }
+    if (n < 10)
+    {
+        _putch(n + '0');
+    }
+    else if (n >= 10)
+    {
+        print_nombre(n / 10);
+        print_nombre(n % 10);
+    }
+    return (5);
+}
+
+
 int _printf(const char *format, ...)
 {
     int co = 0;
